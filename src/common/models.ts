@@ -2,7 +2,8 @@ export interface iEmployee {
     id: number;
     email: string;
     name: string;
-    country: string;
+    countryCode: string;
+    position: string;
     state: eEmployeeState;
 }
 

@@ -1,5 +1,5 @@
-const header = {
+const headerTranslations = {
     logo: "Logo",
 };
 
-export default header;
+export default headerTranslations;
