@@ -1,6 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import header from "./components/header/header.translation";
+import header from "../components/header/header.translation";
 
 i18n.use(initReactI18next).init({
     fallbackLng: "en",
