@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home } from "../../pages";
+import { Main } from "../../components";
 
 function App(): JSX.Element {
     return (
@@ -8,7 +8,7 @@ function App(): JSX.Element {
             <Router>
                 <Switch>
                     <Route path="/">
-                        <Home />
+                        <Main />
                     </Route>
                 </Switch>
             </Router>

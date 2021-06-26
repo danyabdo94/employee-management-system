@@ -21,6 +21,7 @@ export default function EmployeesList(): JSX.Element {
                     />
                 </Box>
             </Flex>
+            <Flex my={2} mx={4}></Flex>
         </>
     );
 }

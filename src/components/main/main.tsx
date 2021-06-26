@@ -1,7 +1,8 @@
 import { Switch, Route } from "react-router-dom";
-import { Header, EmployeesList } from "../../components";
+import { Header } from "..";
+import { EmployeesList } from "../../pages";
 
-function Home(): JSX.Element {
+function Main(): JSX.Element {
     return (
         <div>
             <Header></Header>
@@ -14,4 +15,4 @@ function Home(): JSX.Element {
     );
 }
 
-export default Home;
+export default Main;
