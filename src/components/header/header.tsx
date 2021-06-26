@@ -1,10 +1,10 @@
 import { Box, Flex, Text, Heading, Button, Stack, useDisclosure } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, AddIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import NAV_ITEMS from "./nav-items";
 
 export default function Header(): JSX.Element {
-    const { t } = useTranslation("header");
+    const { t } = useTranslation(["header", "common"]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const handleToggle = () => (isOpen ? onClose() : onOpen());
 
@@ -29,13 +29,13 @@ export default function Header(): JSX.Element {
                 mt={{ base: 4, md: 0 }}
             >
                 {NAV_ITEMS.map((navItem) => (
-                    <Text key={navItem.label}>{t(navItem.label)}</Text>
+                    <Text key={navItem.label}>{t(`common:${navItem.label}`)}</Text>
                 ))}
             </Stack>
 
             <Box display={{ base: isOpen ? "block" : "none", md: "block" }} mt={{ base: 4, md: 0 }}>
                 <Button variant="outline" _hover={{ bg: "teal.700", borderColor: "teal.700" }}>
-                    {t("add employee")}
+                    <AddIcon /> <Box ml={1}>{t("common:add employee")}</Box>
                 </Button>
             </Box>
         </Flex>
