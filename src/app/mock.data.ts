@@ -1,4 +1,21 @@
 import { eEmployeeState, iEmployee } from "./../common/models";
+export const STATES = {
+    ADDED: {
+        on: { NEXT: "IN-CHECK" },
+    },
+    "IN-CHECK": {
+        on: { NEXT: "APPROVED", PREVIOUS: "ADDED" },
+    },
+    APPROVED: {
+        on: { NEXT: "ACTIVE", PREVIOUS: "IN-CHECK" },
+    },
+    ACTIVE: {
+        on: { NEXT: "INACTIVE", PREVIOUS: "APPROVED" },
+    },
+    INACTIVE: {
+        on: { NEXT: "ACTIVE", PREVIOUS: "APPROVED" },
+    },
+};
 
 const mockedEmployees: iEmployee[] = [
     {
