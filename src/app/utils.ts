@@ -10,3 +10,10 @@ export const steps = [
 ];
 
 export const getInitialStep = (state: string) => steps.findIndex(({ label }) => (label as string) === state) + 1;
+
+export const getColorOfState = (state: string) => {
+    const weight = getInitialStep(state);
+    if (weight < 4) return "yellow";
+    if (weight < 5) return "green";
+    else return "red";
+};

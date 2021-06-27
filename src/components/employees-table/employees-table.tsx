@@ -1,9 +1,10 @@
-import { Table, Thead, Tbody, Tr, Th, Td, Flex, IconButton } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, Flex, IconButton, Box } from "@chakra-ui/react";
 import { ViewIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import mockedEmployees from "../../app/mock.data";
 import { Stepper } from "../";
-import { getInitialStep, steps } from "../../app/utils";
+import { getColorOfState, getInitialStep, steps } from "../../app/utils";
+import StatusCircle from "../status-circle/status-circle";
 
 export default function EmployeesTable(): JSX.Element {
     const { t } = useTranslation("employeesTable");
@@ -24,7 +25,18 @@ export default function EmployeesTable(): JSX.Element {
                     {mockedEmployees.map((employee) => (
                         <Tr key={employee.id}>
                             <Td>{employee.id}</Td>
-                            <Td>{`${employee.name}, ${employee.countryCode}`}</Td>
+                            <Td>
+                                <Flex alignItems="center">
+                                    <Box> {`${employee.name}, ${employee.countryCode}`} </Box>
+                                    <Box pb={1} ml={1}>
+                                        <StatusCircle
+                                            color={getColorOfState(employee.state)}
+                                            label={employee.state}
+                                            boxSize={4}
+                                        />
+                                    </Box>
+                                </Flex>
+                            </Td>
                             <Td>{employee.position}</Td>
                             <Td>
                                 <Stepper steps={steps} initialStep={getInitialStep(employee.state)}></Stepper>
