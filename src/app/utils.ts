@@ -1,5 +1,14 @@
-import { eEmployeeState } from "./../common/models";
+import {
+    eEmployeeState,
+    iMachineContext,
+    tMachineStateSchema,
+    STATES,
+    eStatusColors,
+    tTransitionEvent,
+    eTransitionDirection,
+} from "./../common/models";
 import { AddIcon, QuestionIcon, LockIcon, UnlockIcon, StarIcon } from "@chakra-ui/icons";
+import { createMachine } from "xstate";
 
 export const steps = [
     { label: eEmployeeState.ADDED, icon: AddIcon },
@@ -9,11 +18,29 @@ export const steps = [
     { label: eEmployeeState.INACTIVE, icon: LockIcon },
 ];
 
-export const getInitialStep = (state: string) => steps.findIndex(({ label }) => (label as string) === state) + 1;
+export const getStepNumber = (state: string): number => steps.findIndex(({ label }) => (label as string) === state) + 1;
 
-export const getColorOfState = (state: string) => {
-    const weight = getInitialStep(state);
-    if (weight < 4) return STATUS_COLORS.YELLOW;
-    if (weight < 5) return STATUS_COLORS.GREEN;
-    else return STATUS_COLORS.RED;
+export const checkForValidity = (activeStep: number, pressedStep: number): false | eTransitionDirection => {
+    const diff = activeStep - pressedStep;
+    if (diff == 1) {
+        return eTransitionDirection.NEXT;
+    } else if (diff == -1) {
+        return eTransitionDirection.PREVIOUS;
+    }
+    return false;
 };
+
+export const getColorOfState = (state: string): eStatusColors => {
+    const weight = getStepNumber(state);
+    if (weight < 4) return eStatusColors.YELLOW;
+    if (weight < 5) return eStatusColors.GREEN;
+    else return eStatusColors.RED;
+};
+
+export const createStepperMachine = (initState: eEmployeeState) =>
+    createMachine<iMachineContext, tTransitionEvent, tMachineStateSchema>({
+        id: "stepper",
+        initial: initState,
+        context: { state: initState },
+        states: STATES,
+    });

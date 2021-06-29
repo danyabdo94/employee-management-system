@@ -3,7 +3,7 @@ import { ViewIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
 import mockedEmployees from "../../app/mock.data";
 import { Stepper } from "../";
-import { getColorOfState, getInitialStep, steps } from "../../app/utils";
+import { getColorOfState, getStepNumber, steps } from "../../app/utils";
 import StatusCircle from "../status-circle/status-circle";
 
 export default function EmployeesTable(): JSX.Element {
@@ -39,7 +39,11 @@ export default function EmployeesTable(): JSX.Element {
                             </Td>
                             <Td>{employee.position}</Td>
                             <Td>
-                                <Stepper steps={steps} initialStep={getInitialStep(employee.state)}></Stepper>
+                                <Stepper
+                                    steps={steps}
+                                    initialStep={getStepNumber(employee.state)}
+                                    machine={employee.stateMachine}
+                                ></Stepper>
                             </Td>
                             <Td>
                                 <IconButton
