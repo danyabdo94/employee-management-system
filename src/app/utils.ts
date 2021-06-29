@@ -13,7 +13,7 @@ export const getInitialStep = (state: string) => steps.findIndex(({ label }) => 
 
 export const getColorOfState = (state: string) => {
     const weight = getInitialStep(state);
-    if (weight < 4) return "yellow";
-    if (weight < 5) return "green";
-    else return "red";
+    if (weight < 4) return STATUS_COLORS.YELLOW;
+    if (weight < 5) return STATUS_COLORS.GREEN;
+    else return STATUS_COLORS.RED;
 };

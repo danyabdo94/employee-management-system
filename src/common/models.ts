@@ -14,3 +14,9 @@ export enum eEmployeeState {
     ACTIVE = "ACTIVE",
     INACTIVE = "INACTIVE",
 }
+
+export enum STATUS_COLORS {
+    YELLOW = "yellow",
+    GREEN = "green",
+    RED = "red",
+}
