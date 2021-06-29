@@ -1,14 +1,7 @@
-import {
-    eEmployeeState,
-    iMachineContext,
-    tMachineStateSchema,
-    STATES,
-    eStatusColors,
-    tTransitionEvent,
-    eTransitionDirection,
-} from "./../common/models";
+import { iMachineContext, tMachineStateSchema, STATES, tTransitionEvent } from "./../common/models";
 import { AddIcon, QuestionIcon, LockIcon, UnlockIcon, StarIcon } from "@chakra-ui/icons";
 import { createMachine } from "xstate";
+import { eEmployeeState, eStatusColors, eTransitionDirection } from "./enums";
 
 export const steps = [
     { label: eEmployeeState.ADDED, icon: AddIcon },

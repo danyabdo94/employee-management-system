@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./app/app-component/App";
-import { store } from "./app/store";
+import App from "./app-component/App";
+import { store } from "./common/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
-import "./app/i18n";
+import "./common/i18n";
 
 ReactDOM.render(
     <React.StrictMode>

@@ -1,4 +1,5 @@
-import { eEmployeeState, iEmployee } from "./../common/models";
+import { iEmployee } from "./../common/models";
+import { eEmployeeState } from "./enums";
 import { createStepperMachine } from "./utils";
 
 const mockedEmployees: iEmployee[] = [

@@ -1,6 +1,6 @@
 import { useMachine } from "@xstate/react";
 import { Step, Steps, useSteps } from "chakra-ui-steps";
-import { checkForValidity, getStepNumber } from "../../app/utils";
+import { checkForValidity, getStepNumber } from "../../common/utils";
 import { iEmployee } from "../../common/models";
 
 interface IStepperProps {

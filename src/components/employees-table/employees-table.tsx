@@ -1,9 +1,9 @@
 import { Table, Thead, Tbody, Tr, Th, Td, Flex, IconButton, Box } from "@chakra-ui/react";
 import { ViewIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
-import mockedEmployees from "../../app/mock.data";
+import mockedEmployees from "../../common/mock.data";
 import { Stepper } from "../";
-import { getColorOfState, getStepNumber, steps } from "../../app/utils";
+import { getColorOfState, getStepNumber, steps } from "../../common/utils";
 import StatusCircle from "../status-circle/status-circle";
 
 export default function EmployeesTable(): JSX.Element {

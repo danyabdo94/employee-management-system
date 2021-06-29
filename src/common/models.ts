@@ -1,4 +1,5 @@
 import { StateMachine } from "xstate";
+import { eEmployeeState, eTransitionDirection } from "../common/enums";
 
 export interface iEmployee {
     id: number;
@@ -10,29 +11,14 @@ export interface iEmployee {
     stateMachine: StateMachine<iMachineContext, tMachineStateSchema, tTransitionEvent>;
 }
 
-export enum eEmployeeState {
-    ADDED = "ADDED",
-    IN_CHECK = "IN_CHECK",
-    APPROVED = "APPROVED",
-    ACTIVE = "ACTIVE",
-    INACTIVE = "INACTIVE",
-}
-
-export enum eStatusColors {
-    YELLOW = "yellow",
-    GREEN = "green",
-    RED = "red",
-}
-
 export type tTransitionEvent = { type: eTransitionDirection.NEXT } | { type: eTransitionDirection.PREVIOUS };
 
-export enum eTransitionDirection {
-    NEXT = "NEXT",
-    PREVIOUS = "PREVIOUS",
-}
 export const STATES = {
     ADDED: {
-        on: { NEXT: eEmployeeState.IN_CHECK },
+        on: {
+            NEXT: eEmployeeState.IN_CHECK,
+            // actions: [assign({ completed: true })],
+        },
     },
     IN_CHECK: {
         on: { NEXT: eEmployeeState.APPROVED, PREVIOUS: eEmployeeState.ADDED },
