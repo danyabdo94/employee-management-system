@@ -1,4 +1,4 @@
-import { iMachineContext, tMachineStateSchema, STATES, tTransitionEvent } from "./../common/models";
+import { iMachineContext, tMachineStateSchema, STATES, tTransitionEvent, iEmployee } from "./../common/models";
 import { AddIcon, QuestionIcon, LockIcon, UnlockIcon, StarIcon } from "@chakra-ui/icons";
 import { createMachine } from "xstate";
 import { eEmployeeState, eStatusColors, eTransitionDirection } from "./enums";
@@ -37,3 +37,8 @@ export const createStepperMachine = (initState: eEmployeeState) =>
         context: { state: initState },
         states: STATES,
     });
+
+export const mapStateToMachine = (item: iEmployee): iEmployee => ({
+    ...item,
+    stateMachine: createStepperMachine(item.state),
+});

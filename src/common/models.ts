@@ -5,7 +5,7 @@ export interface iEmployee {
     id: number;
     email: string;
     name: string;
-    countryCode: string;
+    country: string;
     position: string;
     state: eEmployeeState;
     stateMachine: StateMachine<iMachineContext, tMachineStateSchema, tTransitionEvent>;

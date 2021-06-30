@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import { Header } from "..";
-import { EmployeesList } from "../../pages";
+import { Employees } from "../../pages";
 
 function Main(): JSX.Element {
     return (
@@ -8,7 +8,7 @@ function Main(): JSX.Element {
             <Header></Header>
             <Switch>
                 <Route path="/">
-                    <EmployeesList />
+                    <Employees />
                 </Route>
             </Switch>
         </div>

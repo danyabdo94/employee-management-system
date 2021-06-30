@@ -1,1 +1,1 @@
-export { default as EmployeesList } from "./employees-list/employees-list";
+export { default as Employees } from "./employees/employees";

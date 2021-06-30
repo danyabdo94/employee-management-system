@@ -1,4 +1,4 @@
-const employeesTableTranslations = {
+const employeesListTranslations = {
     id: "ID",
     name: "Name",
     position: "Position",
@@ -6,4 +6,4 @@ const employeesTableTranslations = {
     action: "Action",
 };
 
-export default employeesTableTranslations;
+export default employeesListTranslations;

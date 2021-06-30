@@ -1,8 +1,9 @@
 import { Flex, Box, Text, Spacer, IconButton } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import { useTranslation } from "react-i18next";
-import { EmployeesTable } from "../../components";
-export default function EmployeesList(): JSX.Element {
+import { EmployeesList } from "../../components";
+
+export default function Employees(): JSX.Element {
     const { t } = useTranslation("common");
 
     return (
@@ -21,7 +22,7 @@ export default function EmployeesList(): JSX.Element {
                     />
                 </Box>
             </Flex>
-            <EmployeesTable />
+            <EmployeesList />
         </>
     );
 }

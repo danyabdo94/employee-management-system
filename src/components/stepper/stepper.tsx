@@ -11,15 +11,13 @@ interface IStepperProps {
 
 export default function Stepper({ steps, initialStep, machine }: IStepperProps): JSX.Element {
     const [state, send] = useMachine(machine);
-    console.log({ state });
     const { activeStep } = useSteps({
         initialStep: initialStep,
     });
     const isValidPress = (pressedStep: string) => {
-        const goTo = checkForValidity(activeStep, getStepNumber(pressedStep));
-        if (goTo) {
-            console.log("IN");
-            send(goTo);
+        const nextState = checkForValidity(activeStep, getStepNumber(pressedStep));
+        if (state && nextState) {
+            send(nextState);
         }
     };
     return (
