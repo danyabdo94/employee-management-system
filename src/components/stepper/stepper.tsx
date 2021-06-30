@@ -16,6 +16,7 @@ export default function Stepper({ steps, initialStep, machine }: IStepperProps):
     });
     const isValidPress = (pressedStep: string) => {
         const nextState = checkForValidity(activeStep, getStepNumber(pressedStep));
+        console.log(state, nextState);
         if (state && nextState) {
             send(nextState);
         }

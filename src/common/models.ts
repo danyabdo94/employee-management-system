@@ -1,5 +1,14 @@
 import { StateMachine } from "xstate";
-import { eEmployeeState, eTransitionDirection } from "../common/enums";
+import { ASYNC_STATUS, eEmployeeState, eTransitionDirection } from "../common/enums";
+
+export interface iEmployeeDataOnly {
+    id: number;
+    email: string;
+    name: string;
+    country: string;
+    position: string;
+    state: eEmployeeState;
+}
 
 export interface iEmployee {
     id: number;
@@ -12,12 +21,15 @@ export interface iEmployee {
 }
 
 export type tTransitionEvent = { type: eTransitionDirection.NEXT } | { type: eTransitionDirection.PREVIOUS };
+export interface EmployeesState {
+    list: [iEmployee] | [];
+    status: ASYNC_STATUS;
+}
 
 export const STATES = {
     ADDED: {
         on: {
             NEXT: eEmployeeState.IN_CHECK,
-            // actions: [assign({ completed: true })],
         },
     },
     IN_CHECK: {

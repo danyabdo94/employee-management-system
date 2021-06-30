@@ -1,14 +1,9 @@
 import { ASYNC_STATUS } from "../../common/enums";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../common/store";
-import { iEmployee } from "../../common/models";
+import { EmployeesState, iEmployee, iEmployeeDataOnly } from "../../common/models";
 import { getEmployeesService } from "../../common/service";
 import { mapStateToMachine } from "../../common/utils";
-
-export interface EmployeesState {
-    list: [iEmployee] | [];
-    status: ASYNC_STATUS;
-}
 
 const initialState: EmployeesState = {
     list: [],
@@ -24,9 +19,9 @@ export const EmployeesSlice = createSlice({
     name: "Employees",
     initialState,
     reducers: {
-        getEmployees: (state, action: PayloadAction<[iEmployee]>) => {
-            state.list = action.payload;
-        },
+        // editEmployee: (state, action: PayloadAction<[iEmployeeDataOnly]>) => {
+        //     state.list = action.payload;
+        // },
     },
     extraReducers: (builder) => {
         builder
@@ -35,13 +30,13 @@ export const EmployeesSlice = createSlice({
             })
             .addCase(getEmployeesAsync.fulfilled, (state, action) => {
                 state.status = ASYNC_STATUS.IDLE;
-                const mappedItems = action.payload.map((item: iEmployee) => mapStateToMachine(item));
+                const mappedItems = action.payload.map((item: iEmployeeDataOnly) => mapStateToMachine(item));
                 state.list = mappedItems as [iEmployee];
             });
     },
 });
 
-export const { getEmployees } = EmployeesSlice.actions;
+export const {} = EmployeesSlice.actions;
 
 export const selectEmployees = (state: RootState) => state.employees;
 

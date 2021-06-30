@@ -1,4 +1,11 @@
-import { iMachineContext, tMachineStateSchema, STATES, tTransitionEvent, iEmployee } from "./../common/models";
+import {
+    iMachineContext,
+    tMachineStateSchema,
+    STATES,
+    tTransitionEvent,
+    iEmployee,
+    iEmployeeDataOnly,
+} from "./../common/models";
 import { AddIcon, QuestionIcon, LockIcon, UnlockIcon, StarIcon } from "@chakra-ui/icons";
 import { createMachine } from "xstate";
 import { eEmployeeState, eStatusColors, eTransitionDirection } from "./enums";
@@ -16,9 +23,9 @@ export const getStepNumber = (state: string): number => steps.findIndex(({ label
 export const checkForValidity = (activeStep: number, pressedStep: number): false | eTransitionDirection => {
     const diff = activeStep - pressedStep;
     if (diff == 1) {
-        return eTransitionDirection.NEXT;
-    } else if (diff == -1) {
         return eTransitionDirection.PREVIOUS;
+    } else if (diff == -1) {
+        return eTransitionDirection.NEXT;
     }
     return false;
 };
@@ -38,7 +45,7 @@ export const createStepperMachine = (initState: eEmployeeState) =>
         states: STATES,
     });
 
-export const mapStateToMachine = (item: iEmployee): iEmployee => ({
+export const mapStateToMachine = (item: iEmployeeDataOnly): iEmployee => ({
     ...item,
     stateMachine: createStepperMachine(item.state),
 });
