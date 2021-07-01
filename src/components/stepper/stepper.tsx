@@ -12,9 +12,12 @@ interface IStepperProps {
     machine: iEmployee["stateMachine"];
     employee: iEmployee;
 }
+import { useTranslation } from "react-i18next";
 
 export default function Stepper({ steps, initialStep, machine, employee }: IStepperProps): JSX.Element {
     const [state, send] = useMachine(machine);
+    const { t } = useTranslation("common");
+
     const dispatch = useAppDispatch();
     const { activeStep, reset } = useSteps({
         initialStep: initialStep,
@@ -34,7 +37,7 @@ export default function Stepper({ steps, initialStep, machine, employee }: IStep
         <Steps activeStep={activeStep}>
             {steps.map(({ label, icon }) => (
                 <Step
-                    label={label}
+                    label={t(label)}
                     key={label}
                     onClick={() => {
                         isValidPress(label);

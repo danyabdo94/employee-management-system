@@ -9,7 +9,7 @@ import { selectEmployees } from "../employee.list.slicer";
 import { iEmployee } from "../../../common/models";
 
 export default function EmployeesTable(): JSX.Element {
-    const { t } = useTranslation("employeesListTranslations");
+    const { t } = useTranslation(["employeesListTranslations", "common"]);
 
     const employeesState = useAppSelector(selectEmployees);
     const [employeesListWithMachines, setEmployeesListWithMachines] = useState<iEmployee[] | []>([]);
@@ -58,7 +58,7 @@ export default function EmployeesTable(): JSX.Element {
                             <IconButton
                                 variant="outline"
                                 colorScheme="teal"
-                                aria-label={t("add employee")}
+                                aria-label={t("common:add employee")}
                                 icon={<ViewIcon />}
                             />
                         </Td>

@@ -2,7 +2,7 @@ const employeesListTranslations = {
     id: "ID",
     name: "Name",
     position: "Position",
-    status: "Status",
+    state: "State",
     action: "Action",
 };
 
