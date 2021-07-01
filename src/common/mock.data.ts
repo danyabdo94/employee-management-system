@@ -10,7 +10,7 @@ const mockedEmployees: iEmployee[] = [
         country: "GB",
         position: "Senior Frontend Engineer",
         state: eEmployeeState.ADDED,
-        stateMachine: createStepperMachine(eEmployeeState.ADDED),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.ADDED, id: 1 }),
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ const mockedEmployees: iEmployee[] = [
         country: "HN",
         position: "Senior Backend Engineer",
         state: eEmployeeState.ACTIVE,
-        stateMachine: createStepperMachine(eEmployeeState.ACTIVE),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.ACTIVE, id: 2 }),
     },
     {
         id: 3,
@@ -28,7 +28,7 @@ const mockedEmployees: iEmployee[] = [
         country: "PE",
         position: "Senior FullStack Engineer",
         state: eEmployeeState.APPROVED,
-        stateMachine: createStepperMachine(eEmployeeState.APPROVED),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.APPROVED, id: 3 }),
     },
     {
         id: 4,
@@ -37,7 +37,7 @@ const mockedEmployees: iEmployee[] = [
         country: "UA",
         position: "Senior Devops Engineer",
         state: eEmployeeState.INACTIVE,
-        stateMachine: createStepperMachine(eEmployeeState.INACTIVE),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.INACTIVE, id: 4 }),
     },
     {
         id: 5,
@@ -46,7 +46,7 @@ const mockedEmployees: iEmployee[] = [
         country: "BR",
         position: "Senior QA Engineer",
         state: eEmployeeState.IN_CHECK,
-        stateMachine: createStepperMachine(eEmployeeState.IN_CHECK),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.IN_CHECK, id: 5 }),
     },
     {
         id: 6,
@@ -55,7 +55,7 @@ const mockedEmployees: iEmployee[] = [
         country: "ES",
         position: "Tech Lead",
         state: eEmployeeState.APPROVED,
-        stateMachine: createStepperMachine(eEmployeeState.APPROVED),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.APPROVED, id: 6 }),
     },
     {
         id: 7,
@@ -64,7 +64,7 @@ const mockedEmployees: iEmployee[] = [
         country: "CZ",
         position: "EM",
         state: eEmployeeState.ADDED,
-        stateMachine: createStepperMachine(eEmployeeState.ADDED),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.ADDED, id: 7 }),
     },
     {
         id: 8,
@@ -73,7 +73,7 @@ const mockedEmployees: iEmployee[] = [
         country: "RU",
         position: "PM",
         state: eEmployeeState.ADDED,
-        stateMachine: createStepperMachine(eEmployeeState.ADDED),
+        stateMachine: createStepperMachine({ initState: eEmployeeState.ADDED, id: 8 }),
     },
 ];
 

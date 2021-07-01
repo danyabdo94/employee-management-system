@@ -22,7 +22,7 @@ export interface iEmployee {
 
 export type tTransitionEvent = { type: eTransitionDirection.NEXT } | { type: eTransitionDirection.PREVIOUS };
 export interface EmployeesState {
-    list: [iEmployee] | [];
+    list: [iEmployeeDataOnly] | [];
     status: ASYNC_STATUS;
 }
 

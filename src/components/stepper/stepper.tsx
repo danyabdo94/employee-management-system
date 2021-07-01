@@ -1,23 +1,32 @@
+import { useEffect } from "react";
 import { useMachine } from "@xstate/react";
 import { Step, Steps, useSteps } from "chakra-ui-steps";
 import { checkForValidity, getStepNumber } from "../../common/utils";
 import { iEmployee } from "../../common/models";
+import { useAppDispatch } from "../../common/hooks";
+import { editEmployeesAsync } from "../employees-list/employee.list.slicer";
 
 interface IStepperProps {
     steps: { label: string; icon: React.ComponentType }[];
     initialStep: number;
     machine: iEmployee["stateMachine"];
+    employee: iEmployee;
 }
 
-export default function Stepper({ steps, initialStep, machine }: IStepperProps): JSX.Element {
+export default function Stepper({ steps, initialStep, machine, employee }: IStepperProps): JSX.Element {
     const [state, send] = useMachine(machine);
-    const { activeStep } = useSteps({
+    const dispatch = useAppDispatch();
+    const { activeStep, reset } = useSteps({
         initialStep: initialStep,
     });
-    const isValidPress = (pressedStep: string) => {
+    useEffect(() => {
+        reset();
+    }, [employee]);
+
+    const isValidPress = async (pressedStep: string) => {
         const nextState = checkForValidity(activeStep, getStepNumber(pressedStep));
-        console.log(state, nextState);
         if (state && nextState) {
+            dispatch(editEmployeesAsync({ state: pressedStep, employeeId: employee.id }));
             send(nextState);
         }
     };

@@ -37,9 +37,9 @@ export const getColorOfState = (state: string): eStatusColors => {
     else return eStatusColors.RED;
 };
 
-export const createStepperMachine = (initState: eEmployeeState) =>
+export const createStepperMachine = ({ initState, id }: { initState: eEmployeeState; id: number }) =>
     createMachine<iMachineContext, tTransitionEvent, tMachineStateSchema>({
-        id: "stepper",
+        id: `stepper_${id}`,
         initial: initState,
         context: { state: initState },
         states: STATES,
@@ -47,5 +47,5 @@ export const createStepperMachine = (initState: eEmployeeState) =>
 
 export const mapStateToMachine = (item: iEmployeeDataOnly): iEmployee => ({
     ...item,
-    stateMachine: createStepperMachine(item.state),
+    stateMachine: createStepperMachine({ initState: item.state, id: item.id }),
 });

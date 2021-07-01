@@ -1,16 +1,23 @@
+import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, Box, Flex, IconButton } from "@chakra-ui/react";
 import { ViewIcon } from "@chakra-ui/icons";
-import { getColorOfState, getStepNumber, steps } from "../../../common/utils";
+import { getColorOfState, getStepNumber, mapStateToMachine, steps } from "../../../common/utils";
 import { useTranslation } from "react-i18next";
 import { StatusCircle, Stepper } from "../../";
 import { useAppSelector } from "../../../common/hooks";
 import { selectEmployees } from "../employee.list.slicer";
+import { iEmployee } from "../../../common/models";
 
 export default function EmployeesTable(): JSX.Element {
     const { t } = useTranslation("employeesListTranslations");
 
     const employeesState = useAppSelector(selectEmployees);
-
+    const [employeesListWithMachines, setEmployeesListWithMachines] = useState<iEmployee[] | []>([]);
+    useEffect(() => {
+        if (employeesState?.list.length) {
+            setEmployeesListWithMachines(employeesState.list.map((item) => mapStateToMachine(item)));
+        }
+    }, [employeesState]);
     return (
         <Table variant="simple">
             <Thead>
@@ -23,7 +30,7 @@ export default function EmployeesTable(): JSX.Element {
                 </Tr>
             </Thead>
             <Tbody>
-                {employeesState?.list?.map((employee) => (
+                {employeesListWithMachines?.map((employee) => (
                     <Tr key={employee.id}>
                         <Td>{employee.id}</Td>
                         <Td>
@@ -44,6 +51,7 @@ export default function EmployeesTable(): JSX.Element {
                                 steps={steps}
                                 initialStep={getStepNumber(employee.state)}
                                 machine={employee.stateMachine}
+                                employee={employee}
                             ></Stepper>
                         </Td>
                         <Td>
